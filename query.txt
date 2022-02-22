@@ -1,0 +1,20 @@
+QUERY query_identifier1: ```...........
+							...........```
+
+QUERY query_identifier2: ```...........
+							...........```
+
+
+SWITCH {
+	conditional_statement1:
+		query_identifiter
+	;
+
+	conditional_statement2:
+		query_identifier
+	;
+
+	default:
+		query_identifier
+	;
+}
