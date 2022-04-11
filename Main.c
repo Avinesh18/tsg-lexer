@@ -10,7 +10,7 @@ int tokenHandler(char *token_str)
 
 int main()
 {
-    char *query_str = "QUERY query1: ```abcdef```";
+    char *query_str = "QUERY query1:";
     lexer(query_str, tokenHandler);
     printf("\n");
 

@@ -4,7 +4,7 @@ QUERY query_identifier1: ```...........
 QUERY query_identifier2: ```...........
 							...........```
 
-
+query1
 SWITCH {
 	conditional_statement1:
 		query_identifiter
