@@ -30,23 +30,23 @@ number	   [+-]?[0-9]+([.][0-9]+)?([eE][0-9]+)?
 
 %%
 [ \t]*```					{  BEGIN query_string; query[0] = '\0'; query_len = 0; }
-<query_string>[^`]*			{ appendString(yytext, &query, &query_len, &query_capacity); }
-<query_string>```			{ handleToken(query); BEGIN 0; return QUERY_STRING; }
-<query_string>``			{ appendString(yytext, &query, &query_len, &query_capacity); }
-<query_string>`				{ appendString(yytext, &query, &query_len, &query_capacity); }
-[ \t\n]*QUERY 				{ handleToken("QUERY"); return QUERY; }
-[ \t\n]*SWITCH				{ handleToken("SWITCH"); return SWITCH; }
-[ \t\n]*default				{ handleToken("DEFAULT"); return DEFAULT; }
-[ \t]*{identifier}			{ trim(yytext); handleToken("IDENTIFIER"); return IDENT; }
-[ \t]*{number}				{ trim(yytext); handleToken("NUMBER"); return NUMBER;  }
+<query_string>[^`]*				{ appendString(yytext, &query, &query_len, &query_capacity); }
+<query_string>```				{ handleToken(query); BEGIN 0; return QUERY_STRING; }
+<query_string>``				{ appendString(yytext, &query, &query_len, &query_capacity); }
+<query_string>`					{ appendString(yytext, &query, &query_len, &query_capacity); }
+[ \t\n]*QUERY 					{ handleToken("QUERY"); return QUERY; }
+[ \t\n]*SWITCH					{ handleToken("SWITCH"); return SWITCH; }
+[ \t\n]*default					{ handleToken("DEFAULT"); return DEFAULT; }
+[ \t]*{identifier}				{ trim(yytext); handleToken("IDENTIFIER"); return IDENT; }
+[ \t]*{number}					{ trim(yytext); handleToken("NUMBER"); return NUMBER;  }
 [ \t\n]*=					{ handleToken("EQUALS"); return EQUALS;}
 [ \t\n]*&&					{ handleToken("BOOLEAN_AND"); return BOOLEAN_AND; }
-[ \t\n]*\|\|				{ handleToken("BOOLEAN_OR"); return BOOLEAN_OR; }
+[ \t\n]*\|\|					{ handleToken("BOOLEAN_OR"); return BOOLEAN_OR; }
 [ \t]*:						{ handleToken("COLON"); return COLON; }
 [ \t]*\{					{ handleToken("OPEN_PAREN"); return OPEN_PAREN; }
 [ \t]*\}					{ handleToken("CLOSED_PAREN"); return CLOSED_PAREN; }
 [ \t\n]*;					{ handleToken("END_CASE"); return SEMICOLON;}
-.							{ printf("UNRECOGNIZED: %s %i\n", yytext, yytext[0]); }
+.						{ printf("UNRECOGNIZED: %s %i\n", yytext, yytext[0]); }
 %%
 
 
